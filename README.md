@@ -90,6 +90,11 @@ npm run build && npm start   # applies migrations on start (MIGRATE_ON_START=tru
 `npm run check` runs typecheck, lint (typescript-eslint strict, type-checked) and the tests. Tests
 run against real Postgres via [PGlite](https://pglite.dev), so they need no database server.
 
+`npm run build && npm run smoke` boots the built server and drives a full customer journey over
+real HTTP (33 checks): checkout, signed webhooks, GST invoice, invites, seat limits, entitlements,
+usage, seat changes, mandate hand-over, campus domain checks and the background jobs. It uses a
+Postgres wire-protocol server (PGlite) and local stand-ins for Razorpay and Supabase.
+
 Deploy the Dockerfile anywhere that runs containers (Cloud Run fits the existing GCP setup), with
 Postgres 14+ (Supabase Postgres works). Schedule `POST /internal/v1/jobs/provider-actions` every
 10 minutes and `POST /internal/v1/jobs/renewals` daily.

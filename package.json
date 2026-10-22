@@ -16,7 +16,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint .",
     "test": "vitest run",
-    "check": "npm run typecheck && npm run lint && npm test"
+    "check": "npm run typecheck && npm run lint && npm test",
+    "smoke": "node scripts/e2e-smoke.mjs"
   },
   "dependencies": {
     "@hono/node-server": "^2.1.5",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.11",
+    "@electric-sql/pglite-socket": "^0.2.14",
     "@eslint/js": "^9.39.5",
     "@types/node": "^22.20.5",
     "@types/pg": "^8.23.1",
